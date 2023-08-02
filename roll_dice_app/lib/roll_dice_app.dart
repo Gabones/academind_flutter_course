@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:roll_dice_app/gradient_container.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class RollDiceApp extends StatelessWidget {
+  const RollDiceApp({super.key});
 
   // This widget is the root of your application.
   @override
