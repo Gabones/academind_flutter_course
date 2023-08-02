@@ -45,12 +45,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 ),
               ),
             ),
-            ...currentQuestion.getShuffledAnswers().map(
-                  (answer) => AnswerButton(
-                    answerTitle: answer,
-                    onTap: () => answerQuestion(answer),
-                  ),
-                ),
+            ...currentQuestion.shuffledAnswers.map(
+              (answer) => AnswerButton(
+                answerTitle: answer,
+                onTap: () => answerQuestion(answer),
+              ),
+            ),
           ],
         ),
       ),
