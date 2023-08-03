@@ -1,3 +1,4 @@
+import 'package:expenses_tracker_app/widgets/expenses.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesTrackerApp extends StatelessWidget {
@@ -5,6 +6,13 @@ class ExpensesTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      title: 'Expenses Tracker App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
+      home: const Expenses(),
+    );
   }
 }
