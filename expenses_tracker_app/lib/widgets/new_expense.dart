@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../models/category.dart';
 import '../models/expense.dart';
 
 class NewExpense extends StatefulWidget {
@@ -13,6 +14,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _pickedDate;
+  Category? _selectedCategory;
 
   void _presentDatePicker() async {
     final now = DateTime.now();
@@ -28,6 +30,15 @@ class _NewExpenseState extends State<NewExpense> {
     setState(() {
       _pickedDate = date;
     });
+  }
+
+  void _submitForm() {
+    final double? enteredAmount = double.tryParse(_amountController.text);
+    final bool amountIsValid = enteredAmount != null && enteredAmount > 0;
+    final bool titleIsValid = _titleController.text.trim().isNotEmpty;
+    final bool dateIsValid = _pickedDate != null;
+    final bool categoryIsValid = _selectedCategory != null;
+    if (amountIsValid && titleIsValid && dateIsValid && categoryIsValid) {}
   }
 
   @override
@@ -86,6 +97,23 @@ class _NewExpenseState extends State<NewExpense> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(category.name.toUpperCase()),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedCategory = value;
+                  });
+                },
+              ),
+              const Spacer(),
               TextButton(
                 onPressed: () {
                   _titleController.clear();
@@ -95,10 +123,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(_titleController.text);
-                  print(_amountController.text);
-                },
+                onPressed: _submitForm,
                 child: const Text('Save Expense'),
               ),
             ],
