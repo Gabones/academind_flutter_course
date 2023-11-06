@@ -4,7 +4,9 @@ import '../models/category.dart';
 import '../models/expense.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  const NewExpense({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
@@ -32,13 +34,40 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  void _submitForm() {
+  void _submitExpenseData() {
     final double? enteredAmount = double.tryParse(_amountController.text);
     final bool amountIsValid = enteredAmount != null && enteredAmount > 0;
     final bool titleIsValid = _titleController.text.trim().isNotEmpty;
     final bool dateIsValid = _pickedDate != null;
     final bool categoryIsValid = _selectedCategory != null;
-    if (amountIsValid && titleIsValid && dateIsValid && categoryIsValid) {}
+    if (!(amountIsValid && titleIsValid && dateIsValid && categoryIsValid)) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text("Invalid input"),
+          content: const Text("Please make sure a valid title, amount, date and category was entered."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text("OK"),
+            )
+          ],
+        ),
+      );
+      return;
+    }
+
+    widget.onAddExpense(
+      Expense(
+        title: _titleController.text,
+        amount: enteredAmount,
+        date: _pickedDate!,
+        category: _selectedCategory!,
+      ),
+    );
+    Navigator.pop(context);
   }
 
   @override
@@ -83,7 +112,7 @@ class _NewExpenseState extends State<NewExpense> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      _pickedDate != null ? formatter.format(_pickedDate!) : "",
+                      _pickedDate != null ? formatter.format(_pickedDate!) : 'No date selected',
                     ),
                     IconButton(
                       onPressed: _presentDatePicker,
@@ -123,7 +152,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                onPressed: _submitForm,
+                onPressed: _submitExpenseData,
                 child: const Text('Save Expense'),
               ),
             ],
