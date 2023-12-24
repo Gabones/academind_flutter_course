@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/ui_updates_demo.dart';
+import 'package:todo_app/keys/keys.dart';
 
 class TodoApp extends StatelessWidget {
   const TodoApp({super.key});
@@ -12,7 +12,7 @@ class TodoApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Flutter Internals'),
         ),
-        body: const UIUpdatesDemo(),
+        body: const Keys(),
       ),
     );
   }
