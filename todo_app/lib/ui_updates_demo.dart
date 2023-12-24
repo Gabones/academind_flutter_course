@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/demo_buttons.dart';
-import 'package:todo_app/keys/keys.dart';
 
 class UIUpdatesDemo extends StatelessWidget {
   const UIUpdatesDemo({super.key});
@@ -26,8 +25,7 @@ class UIUpdatesDemo extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 24),
-            DemoButtons(),
-            //Keys()
+            DemoButtons()
           ],
         ),
       ),
