@@ -4,19 +4,23 @@ This repository is a monorepo os all apps developed during the academind course 
 
 Each folder matches an app, the order of complexity is:
 
-- Roll Dice App
-- Quiz App
-- Expense Tracker App
-- Todo App
-- Meals App
-- Shopping List App
-- Favorite Places App
-- Chat App
+-   Roll Dice App
+-   Quiz App
+-   Expense Tracker App
+-   Todo App
+-   Meals App
+-   Shopping List App
+-   Favorite Places App
+-   Chat App
 
 <table>
   <tr>
     <td valign="top"><img src="roll_dice_app\assets\screen_print.png"></td>
     <td valign="top"><img src="quiz_app\assets\screen_print.png"></td>
+  </tr>
+  <tr>
+    <td valign="top"><img src="expenses_tracker_app\assets\screen_print.png"></td>
+    <td valign="top"><img src="todo_app\assets\screen_print.png"></td>
   </tr>
 </table>
 

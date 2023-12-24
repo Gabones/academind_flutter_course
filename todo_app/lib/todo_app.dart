@@ -7,10 +7,11 @@ class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter Internals'),
+          title: const Text('Todo App (Flutter Internals)'),
         ),
         body: const Keys(),
       ),
